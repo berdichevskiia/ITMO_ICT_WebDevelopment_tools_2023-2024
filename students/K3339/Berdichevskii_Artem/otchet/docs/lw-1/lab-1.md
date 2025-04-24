@@ -18,7 +18,7 @@ lr1/
 │   ├── main.py           # Основной модуль FastAPI
 │   ├── database.py       # Подключение к БД
 │   ├── start.sh          # Скрипт запуска
-│   └── ...
+│   └── repositories/     # Логика работы с данными
 ```
 
 ---
@@ -47,7 +47,7 @@ $ docker-compose up --build
 
 ---
 
-## 🧩 Основные модули
+## 🧩 Основные модули и примеры кода
 
 ### 📄 `main.py`
 ```python
@@ -60,6 +60,8 @@ def read_root():
     return {"message": "Hello, World!"}
 ```
 
+Простой HTTP GET обработчик, возвращающий JSON-ответ при обращении к корню API.
+
 ### 🗃 `database.py`
 ```python
 from sqlalchemy import create_engine
@@ -69,6 +71,62 @@ DATABASE_URL = "sqlite:///./test.db"
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(bind=engine)
 ```
+
+Модуль настройки подключения к базе данных.
+
+---
+
+## 🧱 Репозитории и модели
+
+### 👤 User
+Файл: `repositories/user.py`
+- Методы: `get_by_email`, `get_by_username`, `create`, `update_password`
+- Используемая модель: `User`
+
+```python
+async def get_by_email(self, db, email):
+    result = await db.execute(select(User).filter(User.email == email))
+    return result.scalars().first()
+```
+
+Создание пользователя с хешированием пароля:
+```python
+hashed_password = get_password_hash(obj_in.password)
+```
+
+### 📋 Task
+Файл: `repositories/task.py`
+- Метод: `get_by_event_id`
+- Модель: `Task`
+
+```python
+statement = select(Task).filter(Task.event_id == event_id)
+```
+
+Возвращает список заданий, привязанных к событию.
+
+### 👥 Team
+Файл: `repositories/team.py`
+- Методы: `get_event_teams`, `get_user_teams`, `get_by_user_event`
+- Модель: `Team`
+
+```python
+select(Team).join(Registration).where(Registration.user_id == user.id)
+```
+
+Получение всех команд пользователя или команд по событию.
+
+### 🎉 Event
+Файл: `repositories/event.py`
+- Метод: `filter_events_by_dates`
+- Модель: `Event`
+
+```python
+if from_date:
+    query = query.filter(self.model.dt_event_start >= from_date)
+```
+
+Фильтрация событий по датам начала/окончания/регистрации.
 
 ---
 
@@ -100,14 +158,3 @@ $ alembic upgrade head
 ```bash
 $ curl http://localhost:8000/
 ```
-
----
-
-## ✅ Заключение
-Проект демонстрирует базовую архитектуру веб-сервиса с API-интерфейсом, миграциями и возможностью запуска в контейнерах. Это хорошая основа для масштабируемого и удобного в развертывании веб-приложения.
-
----
-
-<sub>Отчет сгенерирован автоматически с использованием MkDocs-совместимой разметки</sub>
-
-

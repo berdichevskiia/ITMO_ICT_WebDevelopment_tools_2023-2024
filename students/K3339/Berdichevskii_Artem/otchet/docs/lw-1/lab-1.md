@@ -158,3 +158,5 @@ $ alembic upgrade head
 ```bash
 $ curl http://localhost:8000/
 ```
+
+Ссылка на репозиторий: https://github.com/berdichevskiia/ITMO_ICT_WebDevelopment_tools_2023-2024/tree/lr1

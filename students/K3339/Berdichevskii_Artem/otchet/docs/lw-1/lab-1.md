@@ -160,3 +160,12 @@ $ curl http://localhost:8000/
 ```
 
 Ссылка на репозиторий: https://github.com/berdichevskiia/ITMO_ICT_WebDevelopment_tools_2023-2024/tree/lr1
+
+![Задача 1](/Users/artemberdichevskii/PycharmProjects/ITMO_ICT_WebDevelopment_tools_2023-2024/students/K3339/Berdichevskii_Artem/otchet/docs/pic/1_task.png)
+
+![Решение задачи 1](/Users/artemberdichevskii/PycharmProjects/ITMO_ICT_WebDevelopment_tools_2023-2024/students/K3339/Berdichevskii_Artem/otchet/docs/pic/1_answer.png)
+
+
+![Задача 2](/Users/artemberdichevskii/PycharmProjects/ITMO_ICT_WebDevelopment_tools_2023-2024/students/K3339/Berdichevskii_Artem/otchet/docs/pic/2_task.png)
+
+![Решение задачи 2](/Users/artemberdichevskii/PycharmProjects/ITMO_ICT_WebDevelopment_tools_2023-2024/students/K3339/Berdichevskii_Artem/otchet/docs/pic/2_answer.png)
